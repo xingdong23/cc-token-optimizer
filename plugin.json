@@ -1,0 +1,11 @@
+{
+  "name": "cc-token-optimizer",
+  "description": "Audit and reduce Claude Code token costs. Measures real system prompt size from session logs, identifies token-heavy MCP servers, and removes the ones you don't need.",
+  "version": "1.0.0",
+  "author": {
+    "name": "chengzheng",
+    "url": "https://github.com/chengzheng"
+  },
+  "license": "MIT",
+  "keywords": ["claude-code", "tokens", "mcp", "cost", "optimization", "rtk"]
+}
