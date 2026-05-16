@@ -5,7 +5,7 @@
 set -e
 
 SKILL_DIR="${HOME}/.claude/skills/cc-token-audit"
-REPO="https://raw.githubusercontent.com/YOUR_USERNAME/cc-token-optimizer/main"
+REPO="https://raw.githubusercontent.com/xingdong23/cc-token-optimizer/main"
 
 echo "Installing cc-token-audit skill..."
 mkdir -p "$SKILL_DIR"

@@ -23,7 +23,7 @@ mkdir -p ~/.claude/skills/cc-token-audit
 cp skills/cc-token-audit/SKILL.md ~/.claude/skills/cc-token-audit/
 
 # Or one-liner (after cloning)
-curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/cc-token-optimizer/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/xingdong23/cc-token-optimizer/main/scripts/install.sh | bash
 ```
 
 ## Usage
