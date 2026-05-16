@@ -111,18 +111,26 @@ with open('/Users/\$(whoami)/.claude.json', 'w') as f:
 
 **After removing:** Start a new session and re-run the diagnosis. The difference in `cache_creation_input_tokens` is your saving per session.
 
-## RTK: Save Tokens on Tool Outputs
+## Companion Tools: RTK + CAVEMAN
 
-MCP schemas bloat the *system prompt*. RTK (Rust Token Killer) compresses *tool outputs* — git, grep, find, etc. — saving 60–90% on those results.
+MCP schemas bloat the *system prompt*. Two more tools cover the other layers:
 
+**RTK** (Rust Token Killer) — compresses tool output *entering* Claude (git, grep, find results)
 ```bash
-# Check if RTK is installed
-rtk --version 2>/dev/null || echo "RTK not installed"
-
-# If not installed: https://github.com/colerafiz/rtk
-# Once installed, it rewrites commands via Claude Code hooks automatically
-# No usage change needed — transparent proxy
+rtk --version 2>/dev/null || echo "not installed — https://github.com/colerafiz/rtk"
+# Transparent proxy via hooks — no usage change needed
 ```
+
+**CAVEMAN** — injects terse-response rules at session start, compresses Claude's *outgoing* responses
+```bash
+# https://github.com/nicholasgasior/caveman
+# Installs as a SessionStart hook → enforces compact output style automatically
+```
+
+| Tool | Direction | Mechanism |
+|------|-----------|-----------|
+| RTK | Tool results → Claude | Filters/truncates command output |
+| CAVEMAN | Claude → you | Behavioral rules injected via SessionStart hook |
 
 ## Monitor: Track Savings Over Time
 

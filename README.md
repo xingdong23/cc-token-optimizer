@@ -13,7 +13,7 @@ The system prompt is where 80–90% of token waste hides. But Claude Code doesn'
 1. **Diagnose** — Reads your session JSONL to show the real `cache_creation_input_tokens` (actual system prompt size)
 2. **Audit** — Scans all MCP config files and lists what's enabled
 3. **Fix** — Removes unused MCPs, verifies the saving
-4. **RTK integration** — Guides setup of [RTK](https://github.com/colerafiz/rtk) for tool output compression (60–90% savings)
+4. **RTK + CAVEMAN** — Guides setup of companion tools for the remaining two optimization layers
 
 ## Install
 
@@ -66,13 +66,15 @@ At Sonnet pricing ($3/M input tokens), a developer doing 20 new sessions/day sav
 
 ## Token Cost Stack
 
-Three layers of optimization:
+Three layers, three tools:
 
 | Layer | Tool | What It Saves |
 |-------|------|--------------|
-| System prompt | This skill | MCP schema bloat (per-session) |
-| Tool outputs | [RTK](https://github.com/colerafiz/rtk) | git/grep/find output (per-call) |
-| Context window | CLAUDE.md discipline | Unnecessary file loads |
+| System prompt | **This skill** | MCP schema bloat — billed on every new session |
+| Tool outputs (input side) | [RTK](https://github.com/colerafiz/rtk) | Compresses git/grep/find output before it reaches Claude (60–90%) |
+| Response output side | [CAVEMAN](https://github.com/nicholasgasior/caveman) | Injects terse-response rules at session start, enforces compact Claude output |
+
+Each tool works at a different layer — all three together gives maximum savings.
 
 ## License
 
